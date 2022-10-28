@@ -5,9 +5,12 @@ import org.springframework.stereotype.Component;
 
 @Component("personBean")
 public class Person {
+    @Autowired //injection через field - unsafe https://habr.com/ru/post/334636/
+    //если и выбирать, то либо constuctor injection, либо setter injection
     private Pet pet;
     private String surname;
     private int age;
+
 
     public Person() {
         System.out.println("Person bean created");
@@ -50,8 +53,8 @@ public class Person {
     */
 
     //конверация из файла xml: set -> setPet
-    @Autowired //в принципе вот и всё, при использовании аннотации имя сеттера не важно
-    public void anyMethodName(Pet pet) {
+    //@Autowired //в принципе вот и всё, при использовании аннотации имя сеттера не важно
+    public void setPet(Pet pet) {
         System.out.println("Class Person: anyMethodName Pet");
         this.pet = pet;
     }
