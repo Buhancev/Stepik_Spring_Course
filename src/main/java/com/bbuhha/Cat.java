@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 //в данном случае id = id = cat
 //FavoriteSong -> id = favoriteSong
 //SQLtext -> id = SQLtext (если 2 заглавные в начале идут подряд, то не меняется)
-@Component
+@Component("catBena")
 public class Cat implements Pet{
     public Cat() {
         System.out.println("Cat bean created");
