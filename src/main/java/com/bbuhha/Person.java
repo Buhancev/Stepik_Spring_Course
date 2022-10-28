@@ -9,9 +9,9 @@ public class Person {
     private String surname;
     private int age;
 
-    //public Person() {
-    //    System.out.println("Person bean created");
-    //}
+    public Person() {
+        System.out.println("Person bean created");
+    }
 
     public void setAge(int age) {
         System.out.println("Class Person: set age");
@@ -40,18 +40,19 @@ public class Person {
     по типу Pet. Он находит Cat, т.к класс Cat implement Pet. Успешно внедряет зависимость.
     Если ни один bean не будет соответстовать типа Pet, то не комплируется (ген. искл).
     Если найдется больше одного bean'a для типа Pet, то ... ?
-     */
+
     @Autowired //если в классе имеется 1 конструктор, то можно не писать аннотацию
     //начиная с какой-то там версии Spring сам дописывает это, но это скам
     public Person(Pet pet) {
         System.out.println("Person bean created");
         this.pet = pet;
     }
-
+    */
 
     //конверация из файла xml: set -> setPet
-    public void setPet(Pet pet) {
-        System.out.println("Class Person: set Pet");
+    @Autowired //в принципе вот и всё, при использовании аннотации имя сеттера не важно
+    public void anyMethodName(Pet pet) {
+        System.out.println("Class Person: anyMethodName Pet");
         this.pet = pet;
     }
 
