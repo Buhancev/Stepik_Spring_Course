@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Что же такое bean ? - java-объект, который создается и управляется
+     Spring Container. Spring сам создает объекты из конфиг. файла. Мы не создаем их,
+     а лишь достаем из Spring Container-->
+    <!-- id нужен чтобы достать объект из Spring Container по этому id -->
+
+
+
+    <bean id = "myPet"
+          class="com.bbuhha.Dog"
+          scope="prototype">
+
+        <!-- scope = "prototype"
+        bean'ы создаются каждый роз, когда достаем из контейнера(если не достали, то нет
+        ни одного bean'a.
+        Для каждого обращения - новый bean
+        Подходид для stateful-object (bean'ы которые хранят которое состояние
+        например, имя собаки)
+        -->
+
+
+
+        <!-- Если scope не указываем, то он default = singleton, то есть bean создается
+        даже если мы его не запрашиваем.
+        То есть жизненный цикл начинается с чтения файла конфига Spring Container'ом,
+        является общим для всех, кто запросит его у Spring Container'a
+        и подходит для stateless объектов (stateless-object - объекты состояние которых
+        не приходится менять, и нужен всего один единственный bean)-->
+    </bean>
+
+
+
+
+
+</beans>

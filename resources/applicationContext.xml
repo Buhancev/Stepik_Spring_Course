@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Что же такое bean ? - java-объект, который создается и управляется
+     Spring Container. Spring сам создает объекты из конфиг. файла. Мы не создаем их,
+     а лишь достаем из Spring Container-->
+    <!-- id нужен чтобы достать объект из Spring Container по этому id -->
+
+    <!-- читаем данные из файла, а не хардкодим их-->
+    <context:property-placeholder location = "classpath:myApp.properties"></context:property-placeholder>
+
+
+    <bean id = "myPet"
+          class="com.bbuhha.Cat">
+    </bean>
+
+    <bean id = "myPerson"
+          class = "com.bbuhha.Person">
+        <!-- зависимость с помощью setter'a -->
+        <property name="pet" ref = "myPet"></property>
+        <property name="surname" value="${Person.surname}"></property>
+        <property name="age" value="${Person.age}"></property>
+
+        <!-- создаем bean Person и говорим что myPerson зависит от myPet через
+        конструктор
+        <constructor-arg ref = "myPet"/> -->
+
+    </bean>
+
+
+</beans>
