@@ -5,8 +5,14 @@ import org.springframework.stereotype.Component;
 
 @Component("personBean")
 public class Person {
-    @Autowired //injection через field - unsafe https://habr.com/ru/post/334636/
-    //если и выбирать, то либо constuctor injection, либо setter injection
+    //@Autowired //injection через field - unsafe https://habr.com/ru/post/334636/
+    //если и выбирать, то либо constuctor injection, либо setter injection (можно смешать)
+    //setter - для необязательных (можно делать повторную реинъекцию)
+    //конструктор - для обязательных (в кратце)
+    //В документации Spring 4.x рекомендуется через конструктор, поскольку
+    //он позволяет реализовывать неизменяемые компоненты и гарантировать что требуемые
+    //зависимости не null
+
     private Pet pet;
     private String surname;
     private int age;
