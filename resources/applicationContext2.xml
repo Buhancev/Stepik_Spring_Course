@@ -7,12 +7,6 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- Что же такое bean ? - java-объект, который создается и управляется
-     Spring Container. Spring сам создает объекты из конфиг. файла. Мы не создаем их,
-     а лишь достаем из Spring Container-->
-    <!-- id нужен чтобы достать объект из Spring Container по этому id -->
-
-
 
     <bean id = "myPet"
           class="com.bbuhha.Dog"
@@ -44,9 +38,5 @@
         и подходит для stateless объектов (stateless-object - объекты состояние которых
         не приходится менять, и нужен всего один единственный bean)-->
     </bean>
-
-
-
-
 
 </beans>
