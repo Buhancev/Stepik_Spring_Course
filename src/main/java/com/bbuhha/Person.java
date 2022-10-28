@@ -2,6 +2,7 @@ package com.bbuhha;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component("personBean")
@@ -18,7 +19,11 @@ public class Person {
     //предотварить выброс данного исключения можно с помощью аннотации @Quilifier
     //она пишется после @Autowired
     private Pet pet;
+    // @Value("Buhancev") hardcoded
+    @Value("${Person.surname}")
     private String surname;
+    //@Value("20") hardcoded поэтому пишем в properties
+    @Value("${Person.age}")
     private int age;
 
 
@@ -64,7 +69,7 @@ public class Person {
 
     //конверация из файла xml: set -> setPet
     @Autowired //в принципе вот и всё, при использовании аннотации имя сеттера не важно
-    //Qualifier("catBean")
+    @Qualifier("catBean")
     public void setPet(Pet pet) {
         System.out.println("Class Person: anyMethodName Pet");
         this.pet = pet;

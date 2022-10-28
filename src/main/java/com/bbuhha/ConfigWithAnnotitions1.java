@@ -14,6 +14,8 @@ public class ConfigWithAnnotitions1 {
         //Cat myCat = context.getBean("cat", Cat.class);
         //myCat.say();
 
+        System.out.println(person.getAge());
+        System.out.println(person.getSurname());
 
         context.close();
     }
