@@ -16,8 +16,8 @@
         (и создаст, если это singleton)
      -->
     <context:component-scan base-package="com"></context:component-scan>
-    <context:property-placeholder location="classpath:myApp.properties"></context:property-placeholder>
-
+    <!--<context:property-placeholder location="classpath:myApp.properties"></context:property-placeholder>
+    -->
 
 
 
