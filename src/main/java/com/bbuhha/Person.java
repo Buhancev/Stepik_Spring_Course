@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component("personBean")
+//@Component("personBean")
 public class Person {
     //@Autowired //injection через field - unsafe https://habr.com/ru/post/334636/
     //если и выбирать, то либо constuctor injection, либо setter injection (можно смешать)
@@ -61,15 +61,16 @@ public class Person {
 
     @Autowired //если в классе имеется 1 конструктор, то можно не писать аннотацию
     //начиная с какой-то там версии Spring сам дописывает это, но это скам
-    public Person(@Qualifier("catBean") Pet pet) {
-        System.out.println("Person bean created");
+        public Person(@Qualifier("catBean") Pet pet) {
+*/
+    public Person(Pet pet) {
         this.pet = pet;
     }
-    */
+
 
     //конверация из файла xml: set -> setPet
-    @Autowired //в принципе вот и всё, при использовании аннотации имя сеттера не важно
-    @Qualifier("catBean")
+    //@Autowired //в принципе вот и всё, при использовании аннотации имя сеттера не важно
+    //@Qualifier("catBean")
     public void setPet(Pet pet) {
         System.out.println("Class Person: anyMethodName Pet");
         this.pet = pet;
