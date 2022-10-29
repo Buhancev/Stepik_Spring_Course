@@ -1,9 +1,6 @@
 package com.bbuhha;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 
 import java.sql.SQLOutput;
 
@@ -20,7 +17,11 @@ import java.sql.SQLOutput;
 //все бины описываются внутри конфигурации (класса), бины, DI
 //зависимости прописываются вручную
 //аннотация bean перехватывает обращение к бину и регулирует его создание
+
+@PropertySource("classpath:myApp.properties") //данная аннотация укзаывает на проперти файл откуда берутся значения полей
 public class MyConfig {
+
+
 
     @Bean //название метода = beanId, будем создавать бин вручную, аннотация перехватывает и видит, что singleton
     //то нет необходимости создавать еще 1 объект, ведь он уже есть в контейнере

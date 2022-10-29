@@ -20,10 +20,10 @@ public class Person {
     //она пишется после @Autowired
     private Pet pet;
     // @Value("Buhancev") hardcoded
-    //@Value("${Person.surname}")
+    @Value("${Person.surname}")
     private String surname;
     //@Value("20") hardcoded поэтому пишем в properties
-    //@Value("${Person.age}")
+    @Value("${Person.age}")
     private int age;
 
 
