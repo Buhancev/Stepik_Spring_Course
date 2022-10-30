@@ -55,20 +55,59 @@ public class LoggingAndSecutiryAspect {
     public void advice_name() {some code}
      */
 
-    @Pointcut("execution(* get*())")
-    private void allGetMethodsWithNoParam() {}
+//    @Pointcut("execution(* get*())")
+//    private void allGetMethodsWithNoParam() {}
+//
+//    @Before("allGetMethodsWithNoParam()")
+//    public void beforeGetLoggingAdvice() {
+//        System.out.println("beforeGetLoggingAdvice: попытка получить книгу/журнал");
+//    }
+//
+//
+//    @Before("allGetMethodsWithNoParam()")
+//    public void beforeGetSecurityAdvice() {
+//        System.out.println("beforeGetSecurityAdvice: проверка прав на получение");
+//    }
+//    @Pointcut("execution(* aop.UniLibrary.get*())")
+//    private void getAllMethodsFromUniLibrary () {}
+//
+//    @Pointcut("execution(* aop.UniLibrary.return*())")
+//    private void returnAllMethodsFromUniLibrary () {}
+//
+//    //кобминирование поинткатов в помощью логических операторов
+//    @Pointcut("getAllMethodsFromUniLibrary() || returnAllMethodsFromUniLibrary()")
+//    private void getAndReturnAllMethodsFromUniLibrary() {}
+//
+//    @Before("getAllMethodsFromUniLibrary()")
+//    public void beforeGetLoggingAdvice() {
+//        System.out.println("Logging: beforeGetLoggingAdvice: Log#1");
+//    }
+//
+//    @Before("returnAllMethodsFromUniLibrary()")
+//    public void beforeReturnLoggingAdvice() {
+//        System.out.println("Logging: beforeReturnLoggingAdvice: Log#2");
+//    }
+//
+//    @Before("getAndReturnAllMethodsFromUniLibrary()")
+//    public void beforeGetAndReturnLoggingAdvice() {
+//        System.out.println("Logging: getAndReturnAllMethodsFromUniLibrary: Log#3");
+//    }
 
-    @Before("allGetMethodsWithNoParam()")
-    public void beforeGetLoggingAdvice() {
-        System.out.println("beforeGetLoggingAdvice: попытка получить книгу/журнал");
+
+    //Создадим Pointcut для всех методов UniLibrary, кроме return Magazine
+    @Pointcut("execution(* aop.UniLibrary.*(..))")
+    private void allMethodsFromUniLibrary() {}
+
+    @Pointcut("execution(* aop.UniLibrary.returnMagazine())")
+    private void returnMagazineMethodFromUniLibrary() {}
+
+    @Pointcut("allMethodsFromUniLibrary() && !returnMagazineMethodFromUniLibrary()")
+    private void allMethodsExceptReturnMagazineFromUniLibrary() {}
+
+    @Before("allMethodsExceptReturnMagazineFromUniLibrary()")
+    public void BeforeallMethodsExceptReturnMagazineAdvice() {
+        System.out.println("Logging: beforeAllMethodsExceptReturnMagazineAdvice: log#4");
     }
-
-
-    @Before("allGetMethodsWithNoParam()")
-    public void beforeGetSecurityAdvice() {
-        System.out.println("beforeGetSecurityAdvice: проверка прав на получение");
-    }
-
 
 
 }
