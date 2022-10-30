@@ -2,15 +2,15 @@ package aop.acpects;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.sql.SQLOutput;
 
 @Component
 @Aspect //говорит, что это не простой класс, а Aspect. Поэтому Spring будет к нему относиться по другому
 //Aspect - класс, отвечающий за сквозную функциональность
-public class LoggingAndSecutiryAspect {
+@Order(1)//каким по счету будет выполняться аспект
+
+public class LoggingAspect {
     //advice - метод в Aspect-class, который должен опеределить что и когда должно пройзойти
     /*типы Advice
     before - до метода
@@ -55,19 +55,13 @@ public class LoggingAndSecutiryAspect {
     public void advice_name() {some code}
      */
 
-//    @Pointcut("execution(* get*())")
-//    private void allGetMethodsWithNoParam() {}
-//
-//    @Before("allGetMethodsWithNoParam()")
-//    public void beforeGetLoggingAdvice() {
-//        System.out.println("beforeGetLoggingAdvice: попытка получить книгу/журнал");
-//    }
-//
-//
-//    @Before("allGetMethodsWithNoParam()")
-//    public void beforeGetSecurityAdvice() {
-//        System.out.println("beforeGetSecurityAdvice: проверка прав на получение");
-//    }
+    @Before("aop.acpects.MyPointcuts.allGetMethodsWithNoParam()allGetMethodsWithNoParam()")
+    public void beforeGetLoggingAdvice() {
+        System.out.println("beforeGetLoggingAdvice:" +
+                "логгирование попытки получить книгу/журнал");
+    }
+
+
 //    @Pointcut("execution(* aop.UniLibrary.get*())")
 //    private void getAllMethodsFromUniLibrary () {}
 //
@@ -95,19 +89,19 @@ public class LoggingAndSecutiryAspect {
 
 
     //Создадим Pointcut для всех методов UniLibrary, кроме return Magazine
-    @Pointcut("execution(* aop.UniLibrary.*(..))")
-    private void allMethodsFromUniLibrary() {}
-
-    @Pointcut("execution(* aop.UniLibrary.returnMagazine())")
-    private void returnMagazineMethodFromUniLibrary() {}
-
-    @Pointcut("allMethodsFromUniLibrary() && !returnMagazineMethodFromUniLibrary()")
-    private void allMethodsExceptReturnMagazineFromUniLibrary() {}
-
-    @Before("allMethodsExceptReturnMagazineFromUniLibrary()")
-    public void BeforeallMethodsExceptReturnMagazineAdvice() {
-        System.out.println("Logging: beforeAllMethodsExceptReturnMagazineAdvice: log#4");
-    }
+//    @Pointcut("execution(* aop.UniLibrary.*(..))")
+//    private void allMethodsFromUniLibrary() {}
+//
+//    @Pointcut("execution(* aop.UniLibrary.returnMagazine())")
+//    private void returnMagazineMethodFromUniLibrary() {}
+//
+//    @Pointcut("allMethodsFromUniLibrary() && !returnMagazineMethodFromUniLibrary()")
+//    private void allMethodsExceptReturnMagazineFromUniLibrary() {}
+//
+//    @Before("allMethodsExceptReturnMagazineFromUniLibrary()")
+//    public void BeforeallMethodsExceptReturnMagazineAdvice() {
+//        System.out.println("Logging: beforeAllMethodsExceptReturnMagazineAdvice: log#4");
+//    }
 
 
 }

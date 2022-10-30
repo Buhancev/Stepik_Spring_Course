@@ -14,8 +14,9 @@ public class Test1 {
         //Slibrary.getBook();
         //Book book = context.getBean("book", Book.class);
         Ulibrary.getBook();
-        Ulibrary.returnMagazine();
-        Ulibrary.addBook();
+        Ulibrary.getMagazine();
+        //Ulibrary.returnMagazine();
+        //Ulibrary.addBook();
 
         //Ulibrary.returnBook();
 
