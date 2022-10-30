@@ -28,14 +28,19 @@ public class LoggingAspect {
 
     //@Before("execution(public void get*())")
     //@Before("execution(* get*())")
-    @Before("execution(* get*())")
+
+    //    @Before("execution(public void *(..))") - с любым кол-вом параметров
+
+    //Book, и 0 или > параметров любого типа
+    @Before("execution(public void getBook(aop.Book, ..))")
     public void beforeGetBookAdvice() {
         System.out.println("beforeGetBookAdvice: попытка получить книгу");
     }
 
+    //execution(* *(..)) - для ЛЮБОГО метода
     //execution(* *()) любой access modifier, любое название, метод без параметров
-    @Before("execution(* returnBook())")
-    public void beforeReturnBookAdvice() {
-        System.out.println("beforeReturnBookAdvice: попытка получить книгу");
-    }
+    //@Before("execution(* returnBook())")
+    //public void beforeReturnBookAdvice() {
+    //    System.out.println("beforeReturnBookAdvice: попытка получить книгу");
+    //}
 }
