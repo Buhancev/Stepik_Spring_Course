@@ -1,10 +1,7 @@
 package aop.acpects;
 
 import aop.Student;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -43,10 +40,21 @@ public class UniversityLoggingAspect {
     //можем получить информацию об exception, которые было выброшенно
     //для этого нужно добавить второй параметр
     //не влияет на протекание программы при выбрасывании исключения, но можно получить доступ к исключению
-    @AfterThrowing(pointcut = "execution(* getStudents())",
-        throwing = "exception")             //получаем исключение
-    public void afterThrowingGetStudentAdvice(Throwable exception) {
-        System.out.println("Logging: afterThrowingGetStudentAdvice: логируем выброс исключения " +
-                exception);
-    }
-}
+//    @AfterThrowing(pointcut = "execution(* getStudents())",
+//        throwing = "exception")             //получаем исключение
+//    public void afterThrowingGetStudentAdvice(Throwable exception) {
+//        System.out.println("Logging: afterThrowingGetStudentAdvice: логируем выброс исключения " +
+//                exception);
+//    }
+
+    //Как бы таргет метод не заверашлся (нормально или выбрасывание ислючения)
+    //данный Advice будет выполняться, работает как finally блок
+    //невозможно получить доступ к ислючению, если оно было выброшенно !!!
+    //невозможно получить доступ к возвращаемому результату !!!
+    @After("execution(* getStudents())")
+    public void afterFinallyGetStudentAdvice() {
+        System.out.println("Logging: afterFinallyGetStudentAdvice: логируем нормальное окончание работы метода " +
+                "или выброс исключения");
+
+
+    }}
