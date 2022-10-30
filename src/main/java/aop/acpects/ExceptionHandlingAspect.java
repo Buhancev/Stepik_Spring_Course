@@ -9,11 +9,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Order(3) //каким по счету будет выполняться аспект
 public class ExceptionHandlingAspect {
-    @Before("aop.acpects.MyPointcuts.allGetMethodsWithNoParam()")
-    public void beforeGetExceptionHandlingAdvice()
+    @Before("aop.acpects.MyPointcuts.allAddMethodsWithNoParam()")
+    public void beforeAddExceptionHandlingAdvice()
     {
-        System.out.println("beforeGetExceptionHandlingAdvice: " +
+        System.out.println("beforeAddExceptionHandlingAdvice: " +
                 "ловим, обрабатываем исключение при попытке " +
                 "получить книгу/журнал");
+        System.out.println("------------------------------------");
     }
 }

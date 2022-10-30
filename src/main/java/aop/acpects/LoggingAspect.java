@@ -1,7 +1,10 @@
 package aop.acpects;
 
+import aop.Book;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -55,10 +58,42 @@ public class LoggingAspect {
     public void advice_name() {some code}
      */
 
-    @Before("aop.acpects.MyPointcuts.allGetMethodsWithNoParam()allGetMethodsWithNoParam()")
-    public void beforeGetLoggingAdvice() {
-        System.out.println("beforeGetLoggingAdvice:" +
+    @Before("aop.acpects.MyPointcuts.allAddMethodsWithNoParam()allGetMethodsWithNoParam()")
+    public void beforeAddLoggingAdvice(JoinPoint joinPoint) {
+        /*
+        Join point - точка/момент в выполняемой программе, когда следует применять
+        Advice. T.e это точка переплетения метода с дизнес-логикой и метода со
+        служебным функционалом.
+
+        Прописав Join Point в параметре метода Advice, мы палучаем доступ к информации
+        о сигнатуре и параметрах метода с бизнес-логикой
+
+         */
+
+        //инфа о сигнатуре метода
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+
+
+        System.out.println("beforeAddLoggingAdvice:" +
                 "логгирование попытки получить книгу/журнал");
+        System.out.println("methodSignature " + methodSignature);
+        System.out.println("methodSignature.getMethod() " + methodSignature.getMethod());
+        System.out.println("methodSignature.getReturnType() " + methodSignature.getReturnType());
+        System.out.println("methodSignature.getName() " + methodSignature.getName());
+
+        if(methodSignature.getName().equals("addBook")) {
+            Object[] args = joinPoint.getArgs();
+            for(Object obj : args){
+                if(obj instanceof Book) {
+                    Book myBook = (Book) obj;
+                    System.out.println(myBook.getAuthor() +
+                            myBook.getYearOfPublication() +
+                            myBook.getName());
+                }
+            }
+        }
+
+        System.out.println("------------------------------------");
     }
 
 
