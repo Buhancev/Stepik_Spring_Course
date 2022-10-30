@@ -18,8 +18,24 @@ public class LoggingAspect {
      */
 
     //point cut - выражение, описавающее где должен быть применён Advice
-    @Before("execution(public void getBook())")
+    /*
+    Шаблон pointcut
+    execution( modifiers-pattern? return-type-pattern declaring-type-pattern?
+        method-name-pattern(parameters-pattern) throws-pattern? )
+     */
+
+    //    @Before("execution(public void aop.UniLibrary.getBook())")
+
+    //@Before("execution(public void get*())")
+    //@Before("execution(* get*())")
+    @Before("execution(* get*())")
     public void beforeGetBookAdvice() {
         System.out.println("beforeGetBookAdvice: попытка получить книгу");
+    }
+
+    //execution(* *()) любой access modifier, любое название, метод без параметров
+    @Before("execution(* returnBook())")
+    public void beforeReturnBookAdvice() {
+        System.out.println("beforeReturnBookAdvice: попытка получить книгу");
     }
 }
