@@ -1,6 +1,4 @@
-package com.bbuhha;
-
-import org.springframework.stereotype.Component;
+package spring_introduction;
 
 //в скобках указываем id bean'a
 //можно id не указывать, тогда default bean id = имя класса, но с прописной первой буквой

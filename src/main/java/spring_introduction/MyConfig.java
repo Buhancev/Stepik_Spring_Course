@@ -1,8 +1,6 @@
-package com.bbuhha;
+package spring_introduction;
 
 import org.springframework.context.annotation.*;
-
-import java.sql.SQLOutput;
 
 //1 способ
 //@Configuration //данный класс является конфигурацией

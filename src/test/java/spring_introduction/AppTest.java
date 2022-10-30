@@ -1,4 +1,4 @@
-package com.bbuhha;
+package spring_introduction;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

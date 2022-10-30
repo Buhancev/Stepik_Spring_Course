@@ -1,4 +1,4 @@
-package com.bbuhha;
+package spring_introduction;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

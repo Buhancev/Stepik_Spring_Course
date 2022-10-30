@@ -17,11 +17,11 @@
 
 
     <bean id = "myPet"
-          class="com.bbuhha.Cat">
+          class="spring_introduction.Cat">
     </bean>
 
     <bean id = "myPerson"
-          class = "com.bbuhha.Person">
+          class = "spring_introduction.Person">
         <!-- зависимость с помощью setter'a -->
         <property name="pet" ref = "myPet"></property>
         <property name="surname" value="${Person.surname}"></property>

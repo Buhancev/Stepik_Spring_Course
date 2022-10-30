@@ -9,7 +9,7 @@
 
 
     <bean id = "myPet"
-          class="com.bbuhha.Dog"
+          class="spring_introduction.Dog"
           init-method="init"
           destroy-method="destroy"
           scope="prototype">
