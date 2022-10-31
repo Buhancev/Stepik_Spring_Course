@@ -11,12 +11,8 @@ public class Test3 {
 
         UniLibrary library = context.getBean("uniLibrary", UniLibrary.class);
 
-        long begin = System.currentTimeMillis();
-
         String bookName = library.returnBook();
 
-        long end = System.currentTimeMillis();
-        System.out.println("Метода выполнил работу за = " + (end - begin) + "ms");
 
 
         System.out.println("Вернули книгу в библиотеку " + bookName);
