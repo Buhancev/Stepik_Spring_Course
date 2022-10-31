@@ -1,0 +1,94 @@
+package hibernate.entity;
+
+/*JPA - Java Persistence API - стандартная спецификация, которая описывает систему
+для управления сохранением Java-object в таблицы БД
+
+Hibernate - самая популярная РЕАЛИЗАЦИЯ спецификации JPA
+
+jpa - описывает правила, hibernate - реализует эти правила
+Поэтому используем аннотации JPA (даже команда хайбернейт это рекомендует)
+Hibernate - реализует JPA. 
+ */
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity //класс который имеет отображение в БД в виде таблицы
+@Table(name="employees") //к какой таблице привязываем класс, если бы названия были одинаковы
+//то можно было бы не писать
+public class Employee {
+    @Id //данное поле является отображение PrimaryKey в таблице
+    @Column(name="id") //к какому именно столбцу привязываем
+    private int id;
+
+    @Column(name="name")
+    private String name;
+    @Column(name="surname")
+    private String surname;
+    @Column(name="department")
+    private String department;
+    @Column(name="salary")
+    private int salary;
+
+    public Employee() {
+    }
+
+    public Employee(String name, String surname, String department, int salary) {
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", department='" + department + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+}
