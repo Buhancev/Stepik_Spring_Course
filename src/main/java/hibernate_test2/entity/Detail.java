@@ -19,6 +19,12 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
+    //не пишем @JoinColumn, потому что уже 1 раз прописали это связь в Employee
+    //говорим Hibernate, что связь уже налажена, поищи связь в классе Employee в поле empDetail
+    @OneToOne(mappedBy = "empDetail",
+        cascade = CascadeType.ALL)
+    private Employee detEmployee;
+
     public Detail() {
     }
 
@@ -58,6 +64,14 @@ public class Detail {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Employee getDetEmployee() {
+        return detEmployee;
+    }
+
+    public void setDetEmployee(Employee detEmployee) {
+        this.detEmployee = detEmployee;
     }
 
     @Override
