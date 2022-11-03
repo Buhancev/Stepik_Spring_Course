@@ -39,8 +39,7 @@ public class Employee {
     private int salary;
 
     //всё кроме удаления
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
-            CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")//прописываем Foreing Key - имя столбца в таблице Employees
     private Department department;
 

@@ -50,13 +50,37 @@ public class Test1 {
             //удаление работника потянуло удаление департамента,
             //что в свою очередь удалило ВСЕХ работников в департаменте
             //тк как было cascade = CascadeType.ALL
-
+            //********************************
             //после правок всё стало нормально, убрали REMOVE из каскада
-            Employee employee = session.get(Employee.class, 4);
-            session.delete(employee);
+            //Employee employee = session.get(Employee.class, 4);
+            //session.delete(employee);
+            //********************************
 
+
+
+            //Department department = new Department("Sales", 800, 1000);
+            //Employee emp1 = new Employee("Semen", "Savin", 900);
+            //Employee emp2 = new Employee("Aleksey", "Bobrius", 900);
+            //Employee emp3 = new Employee("Aldar", "Bayminov", 900);
+            //department.addEmployeeToDepartment(emp1);
+            //department.addEmployeeToDepartment(emp2);
+            //department.addEmployeeToDepartment(emp3);
+            //session.persist(department);
+
+            System.out.println("Get Department");
+            //при EAGER получим и ВСЕХ работников
+            Department department = session.get(Department.class, 5);
+
+            System.out.println("Show Department");
+            System.out.println(department);
+
+            department.getEmps().get(0); //подгрузили работников, чтобы после окончания сессия инфа уже была
 
             session.getTransaction().commit(); //подтверждаем свои действия
+
+            //после коммита СЕССИЯ завершена и мы не можем подругить нужную нам информацию, если у нгас FetchType = LAZY
+            System.out.println("Show employees of the department");
+            System.out.println(department.getEmps());
 
         }
 

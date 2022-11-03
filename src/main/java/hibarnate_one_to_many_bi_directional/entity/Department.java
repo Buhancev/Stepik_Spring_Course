@@ -23,9 +23,21 @@ public class Department {
     @Column(name = "min_salary")
     private int minSalary;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
-            CascadeType.MERGE, CascadeType.REFRESH},
-            mappedBy = "department") //поле класса Employee, над котором прописывали аннотации
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "department",
+            //по дефолту - зависит от типа связи
+            /*
+            one-to-one eager - тк мало инфы
+            one-to-many lazy - тк много инфы может быть (many)
+            many-to-one eager - у множества работников одна инфа
+            many-to-many lazy - у множества множество инфы
+             */
+            fetch = FetchType.LAZY
+            //нетерпеливая - сразу загружаем все связанные с сущностью - Hibernate делает один SELECT всего
+            //ленивая - подгружаем по мере необходимости - Hibernate делает для каждого обращения SELECT
+            // (выборка для департмента и выборка для работников)
+    )
+    //поле класса Employee, над котором прописывали аннотации
     private List<Employee> emps;
 
     public Department() {
