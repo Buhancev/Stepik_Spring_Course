@@ -16,7 +16,7 @@ public class Section {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL,
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH},
             fetch = FetchType.EAGER)
     @JoinTable(name = "child_section", //какая таблица join table
             joinColumns = @JoinColumn(name = "section_id"), //с помощью какого столбца join table будет связана sectuion

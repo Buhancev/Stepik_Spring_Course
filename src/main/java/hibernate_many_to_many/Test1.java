@@ -17,52 +17,52 @@ public class Test1 {
         Session session = null;
         try {
             session = factory.getCurrentSession();
+            session.beginTransaction();
 
-//            Section section = new Section("Football");
-//            Child child1 = new Child("Glad", 5);
-//            Child child2 = new Child("Meme", 1);
-//            Child child3 = new Child("AnyAnya", 6);
-//
-//            section.addChild(child1);
-//            section.addChild(child2);
-//            section.addChild(child3);
-//            session.beginTransaction();
-//
-//            session.save(section);
-//            //*************************************************************
-
-//            session.beginTransaction();
-//
-//            Child child = new Child("Rebenochek", 11);
+//            Child child = new Child("Malysh", 11);
 //            Section section1 = new Section("Chess");
-//            Section section2 = new Section("Basetboll");
-//            Section section3 = new Section("Swimming");
+//            Section section2 = new Section("Swimming");
+//            Section section3 = new Section("Polo");
 //
 //            child.addSection(section1);
 //            child.addSection(section2);
 //            child.addSection(section3);
 //
-//            session.save(child);
+//            //если тут добавить секции, то
+//            //IllegalStateException, тк удалили REMOVE из CascadeType
+//            /*
+//            save и persist - разные методы, hibernate реализует их по разному
+//            До этого был ALL, и каскад поддерживал ВСЕ операции, а сейчас
+//            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
+//            поэтому save не доступен для cascade
+//            ПОЭТОМУ ЛУЧШЕ ИСПОЛЬЗОВАТЬ PESIST ВЕЗДЕ!
+//             */
+//            session.persist(child);
 //
-//            session.getTransaction().commit();
-//            //*************************************************************
-
-            session.beginTransaction();
-//            //            //*************************************************************
+//            /*
+//            если хотим все же использовать save, то...:
 //
-//            Section section = session.get(Section.class, 4);
-//            System.out.println(section);
-//            System.out.println(section.getChildren());
-//            //            //*************************************************************
+//            ПОСЛЕ СОХРАНЕНИЯ РЕБЕНКА!
+//            child.addSection(section1);
+//            child.addSection(section2);
+//            child.addSection(section3);
+//
+//            session.save(section1);
+//            session.save(section2);
+//            session.save(section3);
+//
+//             */
 
-            //            //*************************************************************
-            Child child = session.get(Child.class, 10);
-            System.out.println(child);
-            System.out.println(child.getSections());
+
+//            Section section = session.get(Section.class, 12);
+//            //теперь нет КАСКАДНОГО удаления
+//            session.delete(section);
+
+            Child child = session.get(Child.class, 15);
+            //теперь нет КАСКАДНОГО удаления
+            session.delete(child);
 
             session.getTransaction().commit();
-
-
         }
         finally {
             session.close();
