@@ -1,6 +1,6 @@
-package hibernate;
+package Spring_Hibernate.hibernate_one_to_one.hibernate;
 
-import hibernate.entity.Employee;
+import Spring_Hibernate.hibernate_one_to_one.hibernate.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

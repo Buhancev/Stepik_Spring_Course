@@ -1,4 +1,4 @@
-package hibarnate_one_to_many_bi_directional.entity;
+package Spring_Hibernate.hibernate_one_to_one.hibarnate_one_to_many_bi_directional.entity;
 
 /*JPA - Java Persistence API - стандартная спецификация, которая описывает систему
 для управления сохранением Java-object в таблицы БД
@@ -9,7 +9,6 @@ jpa - описывает правила, hibernate - реализует эти �
 Поэтому используем аннотации JPA (даже команда хайбернейт это рекомендует)
 Hibernate - реализует JPA.
  */
-import hibernate_one_to_one.entity.Detail;
 import jakarta.persistence.*;
 
 @Entity //класс который имеет отображение в БД в виде таблицы

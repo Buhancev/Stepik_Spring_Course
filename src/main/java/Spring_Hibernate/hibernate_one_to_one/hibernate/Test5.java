@@ -1,12 +1,12 @@
-package hibernate;
+package Spring_Hibernate.hibernate_one_to_one.hibernate;
 
-import hibernate.entity.Employee;
+import Spring_Hibernate.hibernate_one_to_one.hibernate.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Test2 {
+public class Test5 {
     public static void main(String[] args) {
         //должны создать сессию, чтобы иметь доступ к БД
         //для начала нужно создать SessionFactory
@@ -21,23 +21,19 @@ public class Test2 {
             Session session = factory.getCurrentSession();
             //получаем сессию, делаем операцию и всё (недолго живет, в отличие от SessionFactory)
 
-            Employee emp = new Employee("Oleg", "Sidorov",
-                    "HR", 0);
-
             //открывается транзакция
             session.beginTransaction();
-            session.save(emp); //insert
-            //session.getTransaction().commit(); //подтверждаем свои действия
 
-            int myId = emp.getId();
-            //session = factory.getCurrentSession();
-            //session.beginTransaction();
-                                    //тип получаемого объекта, id
-            Employee employee = session.get(Employee.class, myId);
-            //закрыли транзакцию
+            //Employee emp = session.get(Employee.class, 1);
+            //всё
+            //session.delete(emp);
+
+            session.createQuery("delete Employee " +
+                    "where name = 'Elena'").executeUpdate();
+
             session.getTransaction().commit();
 
-            System.out.println(employee);
+
         }
 
         finally {

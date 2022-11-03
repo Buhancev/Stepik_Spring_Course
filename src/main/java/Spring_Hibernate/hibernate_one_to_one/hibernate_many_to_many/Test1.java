@@ -1,7 +1,7 @@
-package hibernate_many_to_many;
+package Spring_Hibernate.hibernate_one_to_one.hibernate_many_to_many;
 
-import hibernate_many_to_many.entity.Child;
-import hibernate_many_to_many.entity.Section;
+import Spring_Hibernate.hibernate_one_to_one.hibernate_many_to_many.entity.Section;
+import Spring_Hibernate.hibernate_one_to_one.hibernate_many_to_many.entity.Child;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

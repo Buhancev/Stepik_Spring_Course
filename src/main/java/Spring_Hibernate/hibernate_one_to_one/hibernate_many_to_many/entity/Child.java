@@ -1,4 +1,4 @@
-package hibernate_many_to_many.entity;
+package Spring_Hibernate.hibernate_one_to_one.hibernate_many_to_many.entity;
 
 import jakarta.persistence.*;
 

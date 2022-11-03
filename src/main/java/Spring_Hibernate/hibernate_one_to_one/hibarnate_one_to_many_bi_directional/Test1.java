@@ -1,7 +1,7 @@
-package hibarnate_one_to_many_bi_directional;
+package Spring_Hibernate.hibernate_one_to_one.hibarnate_one_to_many_bi_directional;
 
-import hibarnate_one_to_many_bi_directional.entity.Department;
-import hibarnate_one_to_many_bi_directional.entity.Employee;
+import Spring_Hibernate.hibernate_one_to_one.hibarnate_one_to_many_bi_directional.entity.Department;
+import Spring_Hibernate.hibernate_one_to_one.hibarnate_one_to_many_bi_directional.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

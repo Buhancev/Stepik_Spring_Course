@@ -1,4 +1,4 @@
-package hibernate_one_to_one.entity;
+package Spring_Hibernate.hibernate_one_to_one.hibarnate_one_to_many_uni_directional.entity;
 
 /*JPA - Java Persistence API - стандартная спецификация, которая описывает систему
 для управления сохранением Java-object в таблицы БД
@@ -33,23 +33,18 @@ public class Employee {
     private String name;
     @Column(name="surname")
     private String surname;
-    @Column(name="department")
-    private String department;
+
     @Column(name="salary")
     private int salary;
 
-    //Между классом Employee и Detail отношениее OneToOne
-    @OneToOne(cascade = CascadeType.ALL) //если что-то сделали из одной таблицы, то это производится во всех связанных
-    @JoinColumn(name = "details_id")
-    private Detail empDetail;
+
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, String department, int salary) {
+    public Employee(String name, String surname, int salary) {
         this.name = name;
         this.surname = surname;
-        this.department = department;
         this.salary = salary;
     }
 
@@ -77,14 +72,6 @@ public class Employee {
         this.surname = surname;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     public int getSalary() {
         return salary;
     }
@@ -93,13 +80,6 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Detail getEmpDetail() {
-        return empDetail;
-    }
-
-    public void setEmpDetail(Detail empDetail) {
-        this.empDetail = empDetail;
-    }
 
     @Override
     public String toString() {
@@ -107,7 +87,6 @@ public class Employee {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", department='" + department + '\'' +
                 ", salary=" + salary +
                 '}';
     }
