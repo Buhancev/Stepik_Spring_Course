@@ -1,11 +1,13 @@
-package hibernate_test2.entity;
+package hibarnate_one_to_many_bi_directional;
 
+import hibarnate_one_to_many_bi_directional.entity.Department;
+import hibarnate_one_to_many_bi_directional.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Test2 {
+public class Test1 {
     public static void main(String[] args) {
         //должны создать сессию, чтобы иметь доступ к БД
         //для начала нужно создать SessionFactory
@@ -13,7 +15,7 @@ public class Test2 {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")//SessionFactory узнает как создать сессию
                 .addAnnotatedClass(Employee.class) //Entity класс
-                .addAnnotatedClass(Detail.class)
+                .addAnnotatedClass(Department.class)
                 .buildSessionFactory(); //постройка
 
         Session session = null;
@@ -22,29 +24,37 @@ public class Test2 {
              session = factory.getCurrentSession();
             //получаем сессию, делаем операцию и всё (недолго живет, в отличие от SessionFactory)
 
-//            Employee employee = new Employee("Sidor", "Ivanov", "HR", 80);
-//            Detail detail = new Detail("NY", "453454345", "NYSIDR@mail.com");
-//
-//            employee.setEmpDetail(detail); //если тут сохранить, то details_id БУДЕТ ссылаться
-//            detail.setDetEmployee(employee);
-//
-//
-//            //открывается транзакция
-//            session.beginTransaction();
-//
-//            session.persist(detail); //если сделать так, то Employee не ссылкается на detail
-//
-//            System.out.println(employee.getEmpDetail());
-//
-//            session.getTransaction().commit(); //подтверждаем свои действия
+            //Department department = new Department("IT", 300, 500);
+            //Employee emp1 = new Employee("Max", "Buhancev", 400);
+            //Employee emp2 = new Employee("Danila", "Karavaeva", 500);
 
-
+            //department.addEmployeeToDepartment(emp1);
+            //department.addEmployeeToDepartment(emp2);
 
             //открывается транзакция
             session.beginTransaction();
+            //********************************
 
-            Detail detail = session.get(Detail.class, 4);
-            session.delete(detail);
+            //Department department = session.get(Department.class, 1);
+            //System.out.println(department);
+            //System.out.println(department.getEmps());
+            //********************************
+
+            //Employee employee = session.get(Employee.class, 1);
+            //System.out.println(employee);
+            //System.out.println(employee.getDepartment());
+            //********************************
+
+            //session.save(department);
+            //********************************
+            //удаление работника потянуло удаление департамента,
+            //что в свою очередь удалило ВСЕХ работников в департаменте
+            //тк как было cascade = CascadeType.ALL
+
+            //после правок всё стало нормально, убрали REMOVE из каскада
+            Employee employee = session.get(Employee.class, 4);
+            session.delete(employee);
+
 
             session.getTransaction().commit(); //подтверждаем свои действия
 

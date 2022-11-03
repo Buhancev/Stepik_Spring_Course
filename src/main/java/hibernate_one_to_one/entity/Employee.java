@@ -1,4 +1,4 @@
-package hibernate_test2.entity;
+package hibernate_one_to_one.entity;
 
 /*JPA - Java Persistence API - стандартная спецификация, которая описывает систему
 для управления сохранением Java-object в таблицы БД

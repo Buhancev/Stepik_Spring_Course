@@ -1,13 +1,11 @@
-package hibernate_test2;
+package hibernate_one_to_one.entity;
 
-import hibernate_test2.entity.Detail;
-import hibernate_test2.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Test1 {
+public class Test2 {
     public static void main(String[] args) {
         //должны создать сессию, чтобы иметь доступ к БД
         //для начала нужно создать SessionFactory
@@ -24,28 +22,29 @@ public class Test1 {
              session = factory.getCurrentSession();
             //получаем сессию, делаем операцию и всё (недолго живет, в отличие от SessionFactory)
 
-//            Employee employee = new Employee("Maxim", "Buhancev", "CFT", 100);
-//            Detail detail = new Detail("Nsk", "1234567890", "maxim@gmail.com");
+//            Employee employee = new Employee("Sidor", "Ivanov", "HR", 80);
+//            Detail detail = new Detail("NY", "453454345", "NYSIDR@mail.com");
 //
-//            employee.setEmpDetail(detail);
+//            employee.setEmpDetail(detail); //если тут сохранить, то details_id БУДЕТ ссылаться
+//            detail.setDetEmployee(employee);
+//
 //
 //            //открывается транзакция
 //            session.beginTransaction();
 //
-//            session.persist(employee);
+//            session.persist(detail); //если сделать так, то Employee не ссылкается на detail
+//
+//            System.out.println(employee.getEmpDetail());
 //
 //            session.getTransaction().commit(); //подтверждаем свои действия
-
 
 
 
             //открывается транзакция
             session.beginTransaction();
 
-            Employee employee = session.get(Employee.class, 2);
-            session.delete(employee);
-
-            System.out.println(employee.getEmpDetail());
+            Detail detail = session.get(Detail.class, 4);
+            session.delete(detail);
 
             session.getTransaction().commit(); //подтверждаем свои действия
 
