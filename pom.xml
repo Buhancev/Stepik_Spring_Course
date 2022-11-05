@@ -5,7 +5,11 @@
   <artifactId>spring_cource_mvc</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>spring_cource_mvc Maven Webapp</name>
+  <properties>
+      <maven.compiler.source>1.7</maven.compiler.source>
+      <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+    <name>spring_cource_mvc Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
 
