@@ -6,7 +6,10 @@
   <h2> Dear Employee, you are welcome ! </h2>
   <br>
   <br>
-  <h2> Your name: ${param.employeeName}</h2>
+  <!-- обращаемся к атрибуту по имени-->
+  <h2> Your name: ${nameAttribute}</h2>
+  <br>
+  <h1> Test: ${testAtribute}</h1>
 </head>
 <body>
 

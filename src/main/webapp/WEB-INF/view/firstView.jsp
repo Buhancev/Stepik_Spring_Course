@@ -8,7 +8,7 @@
     <br>
 
     <a href="askDetails"> Please write your details </a>
-    
+
 </head>
 <body>
 
