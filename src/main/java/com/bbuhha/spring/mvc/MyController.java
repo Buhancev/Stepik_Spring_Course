@@ -7,11 +7,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
+//Если у нас есть два контроллера, которые обрабатывают ОДИНАКОВЫЕ url-запросы (адрес ссылки),
+// то генерируется исключение Ambiguous mapping - очевидно, Spring не знает как решить эту неоднозначность
+
+
 @Controller //контроллер - специальный компонент
 // (наследования у аннотаций нет, но можно сказать, что контроллер - разновидность компонента)
+//Controller Mapping
+@RequestMapping("/employee") //url для всего контроллера,
+// то есть теперь все остальные RequestMapping в классе будуту вызывать как /employee + их адрес
 public class MyController {
 
+
     //Когда VIEW должен возвращаться ? - по url
+    //Method Mapping
     @RequestMapping("/") //прописываем на url
     public String showFirstView() {
         return "firstView"; //имя VIEW, благодаря конфигурации:
