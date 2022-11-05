@@ -19,11 +19,18 @@
         Salary <form:input path="salary"/>
         <br>
         <br>
+        <!-- хард кодед вариант -->
         Department <form:select path="department">
             <form:option value="Information Technology" lavel = "IT"/>
             <form:option value="Human Resources" lavel = "HR"/>
             <form:option value="Sales" lavel = "Sales"/>
         </form:select>
+        <br>
+        Which car do you want?
+        <!-- не хард кодед вариант-->
+        <form:radiobuttons path="carBrand" items = "${employee.carBrands}"></form:radiobuttons>
+
+        <br>
         <br>
         <input type="submit" value="OK">
 

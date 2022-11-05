@@ -15,6 +15,8 @@
   <h2> Your salary: ${employee.salary}</h2>
   <br>
   <h2> Your department: ${employee.department}</h2>
+  <br>
+  <h2> Your car: ${employee.carBrand}</h2>
 </head>
 <body>
 
