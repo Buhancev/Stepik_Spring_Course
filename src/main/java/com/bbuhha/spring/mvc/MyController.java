@@ -3,6 +3,7 @@ package com.bbuhha.spring.mvc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,19 +23,34 @@ public class MyController {
         return "askEmpDetailsView";
     }
 
+//    @RequestMapping("/showDetails")
+//    //как получить данные? - используем параметры контроллера, httpServletRequest содержит разные данные в т.ч и имя работника
+//    public String showEmpDetails(HttpServletRequest request,
+//                                 Model model) {
+//        //та самая почти переменная в нашем html файле - employeeName
+//        String empName = request.getParameter("employeeName");
+//        empName = "Mr. " + empName;
+//
+//        //чтобы поменять имя, добавим имя в модель (модель - контейнер для КАКИХ УГОДНО данных)
+//        //имя атрибута, значение атрибута
+//        model.addAttribute("nameAttribute", empName);
+//
+//        model.addAttribute("testAtribute", "Kakoe-to znachenie dlya testa containera");
+//
+//        return "showEmpDetailsView";
+//    }
+
+
+
+    //Есть 2 более удобный и широкий метод чтения данных из поля формы - @RequestParam(имя поля формы)
     @RequestMapping("/showDetails")
-    //как получить данные? - используем параметры контроллера, httpServletRequest содержит разные данные в т.ч и имя работника
-    public String showEmpDetails(HttpServletRequest request,
+    public String showEmpDetails(@RequestParam("employeeName") String empName,
                                  Model model) {
-        //та самая почти переменная в нашем html файле - employeeName
-        String empName = request.getParameter("employeeName");
         empName = "Mr. " + empName;
 
         //чтобы поменять имя, добавим имя в модель (модель - контейнер для КАКИХ УГОДНО данных)
         //имя атрибута, значение атрибута
         model.addAttribute("nameAttribute", empName);
-
-        model.addAttribute("testAtribute", "Kakoe-to znachenie dlya testa containera");
 
         return "showEmpDetailsView";
     }
