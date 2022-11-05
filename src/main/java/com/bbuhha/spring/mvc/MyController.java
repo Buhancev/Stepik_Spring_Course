@@ -13,4 +13,14 @@ public class MyController {
         return "firstView"; //имя VIEW, благодаря конфигурации:
         // в начале добавится - где находится VIEW, а в конце - расширение VIEW
     }
+
+    @RequestMapping("/askDetails")
+    public String askEmpDetails() {
+        return "askEmpDetailsView";
+    }
+
+    @RequestMapping("/showDetails")
+    public String showEmpDetails() {
+        return "showEmpDetailsView";
+    }
 }
