@@ -2,6 +2,7 @@ package com.bbuhha.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,7 +29,14 @@ public class MyController {
     }
 
     @RequestMapping("/askDetails")
-    public String askEmpDetails() {
+    public String askEmpDetails(Model model) {
+        Employee employee = new Employee();
+        employee.setName("Ivan");
+        employee.setSurname("Petrov");
+        employee.setSalary(100);
+        //создаем наш атрибут
+        model.addAttribute("employee", employee);
+
         return "askEmpDetailsView";
     }
 
@@ -49,18 +57,9 @@ public class MyController {
 //        return "showEmpDetailsView";
 //    }
 
-
-
-    //Есть 2 более удобный и широкий метод чтения данных из поля формы - @RequestParam(имя поля формы)
     @RequestMapping("/showDetails")
-    public String showEmpDetails(@RequestParam("employeeName") String empName,
-                                 Model model) {
-        empName = "Mr. " + empName;
-
-        //чтобы поменять имя, добавим имя в модель (модель - контейнер для КАКИХ УГОДНО данных)
-        //имя атрибута, значение атрибута
-        model.addAttribute("nameAttribute", empName);
-
+    //получаем из модели атрибут - дает доступ к конкретному атрибуту Модели
+    public String showEmpDetails(@ModelAttribute("employee") Employee emp) {
         return "showEmpDetailsView";
     }
 }

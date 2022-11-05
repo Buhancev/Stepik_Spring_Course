@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -8,13 +9,21 @@
     <br>
     <br>
 
-    <!-- при нажатии на кнопку, происходит переход на /showDetails-->
-    <form action="showDetails" method = "get">
-        <!-- тип - текст, имя поля формы - employeeName (будет хранить значение - почти переменная) -->
-    <input type="text" name="employeeName"
-    placeholder="Write your name"/>
-        <input type="submit"/>
-    </form>
+    <form:form action = "showDetails" modelAttribute="employee">
+        Name <form:input path="name"/>
+        <br>
+        <br>
+        Surname <form:input path="surname"/>
+        <br>
+        <br>
+        Salary <form:input path="salary"/>
+        <br>
+        <br>
+
+        <input type="submit" value="OK">
+
+    </form:form>
+
 
 </head>
 <body>
