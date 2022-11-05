@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- где происходит сканирование и поиск компонентов-->
+    <context:component-scan base-package="com.bbuhha.spring.mvc" />
+
+    <!-- различные преобразования -->
+    <mvc:annotation-driven/>
+
+    <!--VIEW-resolver - готовый класс, отвечающий за обработку VIEW -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- путь, где лежат все VIEW нашего проекта -->
+        <property name="prefix" value="/WEB-INF/view/" />
+        <!-- расширение всех VIEW, чтобы не писать их в будущем(дописываются автоматически к названиям в коде) -->
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>

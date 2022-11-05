@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+
+  <display-name>spring-cource-mvc</display-name>
+
+  <absolute-ordering />
+
+  <servlet>
+    <!-- наш Front Controller - DispatcherServlet-->
+    <servlet-name>dispatcher</servlet-name>
+    <!-- класс, отвечающий за DispatcherServlet-->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <!-- файл отвечающий за конфигурацию Spring приложения-->
+      <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <!-- адрес http - запроса, который будет обрабатывать DispatcherServlet -->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>
