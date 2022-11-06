@@ -2,11 +2,13 @@ package com.bbuhha.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 //Если у нас есть два контроллера, которые обрабатывают ОДИНАКОВЫЕ url-запросы (адрес ссылки),
 // то генерируется исключение Ambiguous mapping - очевидно, Spring не знает как решить эту неоднозначность
@@ -59,7 +61,15 @@ public class MyController {
 
     @RequestMapping("/showDetails")
     //получаем из модели атрибут - дает доступ к конкретному атрибуту Модели
-    public String showEmpDetails(@ModelAttribute("employee") Employee emp) {
+    //@Valid - атрибут employee проходит валидацию
+    public String showEmpDetails(@Valid @ModelAttribute("employee") Employee emp,
+                                 //результат валидации, должен идти в самом конце
+                                 BindingResult bindingResult) {
+        System.out.println(emp.getSurname().length());
+
+        if(bindingResult.hasErrors()) //если были ошибки, то возвращаем ту же страницу, но с ошибкой
+            return "askEmpDetailsView";
+
         return "showEmpDetailsView";
     }
 }

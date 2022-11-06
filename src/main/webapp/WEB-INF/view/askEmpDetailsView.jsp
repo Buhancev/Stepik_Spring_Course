@@ -11,9 +11,11 @@
 
     <form:form action = "showDetails" modelAttribute="employee">
         Name <form:input path="name"/>
+        <form:errors path="name"/> <!-- ошибка относящаяся к валидации поля name нашего employee-->
         <br>
         <br>
         Surname <form:input path="surname"/>
+        <form:errors path="surname"/> <!-- ошибка относящаяся к валидации поля name нашего surname-->
         <br>
         <br>
         Salary <form:input path="salary"/>

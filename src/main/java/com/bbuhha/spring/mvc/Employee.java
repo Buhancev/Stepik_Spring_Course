@@ -1,10 +1,22 @@
 package com.bbuhha.spring.mvc;
 
+import javax.management.remote.JMXServerErrorException;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Employee {
+    //Валидация по размеру
+    @Size(min = 5, message = "name must be minimum 5 symbols")
     private String name;
+
+    //обязательное поле
+    //@NotNull(message = "surname is required field") //Именно не NULL, но это не значит что строка не может быть длинной 0
+    //@NotEmpty(message = "surname is required field") //Значение и не NULL, и не пустой String, но можно схитрить и поставить ПРОБЕЛЫ!
+    @NotBlank(message = "surname is required field") //Тоже что и NotEmpty, но и проверяет, что поле не состоит из ОДНИХ ПРОБЕЛОВ!
     private String surname;
     private int salary;
     private String department;
