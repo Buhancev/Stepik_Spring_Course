@@ -41,6 +41,10 @@
         Phone number <form:input path="phoneNumber"/>
         <form:errors path="phoneNumber"/> <!-- ошибка относящаяся к валидации поля name нашего phoneNumber-->
 
+        <br>
+        <br>
+        Email<form:input path="email"/>
+        <form:errors path="email"/> <!-- ошибка относящаяся к валидации поля name нашего email-->
 
         <br>
         <input type="submit" value="OK">
