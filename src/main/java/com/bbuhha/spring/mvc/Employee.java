@@ -11,6 +11,7 @@ public class Employee {
 
     private String carBrand;
 
+    private String[] languages;
     private Map<String, String> carBrands;
 
 
@@ -67,6 +68,14 @@ public class Employee {
 
     public void setCarBrands(Map<String, String> carBrands) {
         this.carBrands = carBrands;
+    }
+
+    public String[] getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String[] languages) {
+        this.languages = languages;
     }
 
     @Override
