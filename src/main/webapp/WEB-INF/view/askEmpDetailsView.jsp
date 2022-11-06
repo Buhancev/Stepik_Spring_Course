@@ -19,6 +19,7 @@
         <br>
         <br>
         Salary <form:input path="salary"/>
+        <form:errors path="salary"/> <!-- ошибка относящаяся к валидации поля name нашего salary-->
         <br>
         <br>
         <!-- хард кодед вариант -->
@@ -35,6 +36,11 @@
         EN <form:checkbox path="languages" value="English"/>
         RU <form:checkbox path="languages" value="Russian"/>
         UA <form:checkbox path="languages" value="Ukrainian"/>
+        <br>
+        <br>
+        Phone number <form:input path="phoneNumber"/>
+        <form:errors path="phoneNumber"/> <!-- ошибка относящаяся к валидации поля name нашего phoneNumber-->
+
 
         <br>
         <input type="submit" value="OK">

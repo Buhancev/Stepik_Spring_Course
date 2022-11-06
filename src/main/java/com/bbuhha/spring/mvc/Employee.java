@@ -1,10 +1,7 @@
 package com.bbuhha.spring.mvc;
 
 import javax.management.remote.JMXServerErrorException;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +15,9 @@ public class Employee {
     //@NotEmpty(message = "surname is required field") //Значение и не NULL, и не пустой String, но можно схитрить и поставить ПРОБЕЛЫ!
     @NotBlank(message = "surname is required field") //Тоже что и NotEmpty, но и проверяет, что поле не состоит из ОДНИХ ПРОБЕЛОВ!
     private String surname;
+
+    @Min(value = 100, message = "must be greater than 99") //min значение для поля
+    @Max(value = 10000, message = "must be less than 1001") //max значение для поля
     private int salary;
     private String department;
 
@@ -26,6 +26,8 @@ public class Employee {
     private String[] languages;
     private Map<String, String> carBrands;
 
+    @Pattern(regexp = "\\d{3}-\\d{2}-\\d{2}", message = "please use pattern XXX-XX-XX") //регулярное выражение
+    private String phoneNumber;
 
     public Employee() {
         carBrands = new HashMap<>();
@@ -88,6 +90,14 @@ public class Employee {
 
     public void setLanguages(String[] languages) {
         this.languages = languages;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
