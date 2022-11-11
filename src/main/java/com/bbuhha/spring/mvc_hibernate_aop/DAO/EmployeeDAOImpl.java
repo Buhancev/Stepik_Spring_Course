@@ -21,7 +21,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    @Transactional
+    //@Transactional перенесли в сервис
     public List<Employee> getAllEmployees() {
         //транзакцию можно доверить спрингу, чтобы не открывать и не закрывать
         //самостоятельно, для этого нужна аннотация @Transactional
