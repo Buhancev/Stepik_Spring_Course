@@ -60,4 +60,24 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
         return employee;
     }
+
+    @Override
+    public void deleteEmployeeById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        //более простой вариант
+        //Employee employee = getEmployeeById(id);
+        //session.delete(employee);
+
+
+        /*
+        а можно создать запрос на удаление, он может быть СЛОЖНЫМ (то есть обычного удаления по id, которое даёт метод delete
+        может быть недостаточно!
+         */
+        Query<Employee> query = session.createQuery("delete from Employee " +
+                "where id =:employeeId"); //запрос с параметром! Имя параметра - employeeId
+
+        query.setParameter("employeeId", id); //имя параметра, значение параметра
+        query.executeUpdate(); //update + delete
+    }
 }
