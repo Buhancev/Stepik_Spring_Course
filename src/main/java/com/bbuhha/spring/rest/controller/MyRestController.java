@@ -1,12 +1,13 @@
 package com.bbuhha.spring.rest.controller;
 
 import com.bbuhha.spring.rest.entity.Employee;
+import com.bbuhha.spring.rest.exceptionHandling.EmployeeIncorrectData;
+import com.bbuhha.spring.rest.exceptionHandling.NoSuchEmployeeException;
 import com.bbuhha.spring.rest.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +28,40 @@ public class MyRestController {
     public Employee showEmployeeById(@PathVariable int id) {
 
         Employee employee = employeeService.getEmployeeById(id);
+
+        //если работника нет, то будет null -> пустой json
+        //если вместо номера id вписать строку(например), то будет 400 - bad request, в котором нет ничего информативного
+
+        if(employee == null) {
+            throw new NoSuchEmployeeException("There is no employee with ID = " + id + " in Database");
+        }
+
         return employee; //отправляет Employee, который Spring преобразует в json
+    }
+
+    @ExceptionHandler //метод, ответственный за обработку исключений
+    //ResponseEntity - обертка HTTP response
+    public ResponseEntity<EmployeeIncorrectData> handleExceptionNotFound(
+            //В случае выбрасывания NoSuchEmployeeException мы должны добавить в тело Response добавить объект EmployeeIncorrectData
+            //грубо говоря, на какой exception реагирует данный метод
+            NoSuchEmployeeException exception) {
+        EmployeeIncorrectData data = new EmployeeIncorrectData();
+        data.setInfo(exception.getMessage());
+
+        //передаем сам объект, и статус код нашего HTTP-response
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler //метод, ответственный за обработку исключений
+    //ResponseEntity - обертка HTTP response
+    public ResponseEntity<EmployeeIncorrectData> handleExceptionAny(
+            //В случае выбрасывания любой ошибка мы должны добавить в тело Response добавить объект EmployeeIncorrectData
+            //грубо говоря, на какой exception реагирует данный метод
+            Exception exception) {
+        EmployeeIncorrectData data = new EmployeeIncorrectData();
+        data.setInfo(exception.getMessage());
+
+        //передаем сам объект, и статус код нашего HTTP-response
+        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
     }
 }
