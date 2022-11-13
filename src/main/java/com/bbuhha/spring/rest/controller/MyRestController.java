@@ -51,8 +51,8 @@ public class MyRestController {
         return employee;
     }
 
-    @DeleteMapping("/employee/{id}")
-    public String updateEmployeeAndReturnHim(@PathVariable int id) {
+    @DeleteMapping("/employees/{id}")
+    public String deleteEmployeeAndReturnHim(@PathVariable int id) {
         //проверяем есть ли вообще такой работник
         Employee employee = employeeService.getEmployeeById(id);
 
