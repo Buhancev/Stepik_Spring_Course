@@ -1,12 +1,9 @@
 package com.bbuhha.spring.rest.controller;
 
 import com.bbuhha.spring.rest.entity.Employee;
-import com.bbuhha.spring.rest.exceptionHandling.EmployeeIncorrectData;
 import com.bbuhha.spring.rest.exceptionHandling.NoSuchEmployeeException;
 import com.bbuhha.spring.rest.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +14,7 @@ public class MyRestController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("employees")
+    @GetMapping("/employees")
     public List<Employee> showAllEmployees() {
         List<Employee> allEmployees = employeeService.getAllEmployees();
         return allEmployees; //отправляет List<Employee>, который Spring преобразует в json
@@ -37,5 +34,13 @@ public class MyRestController {
         }
 
         return employee; //отправляет Employee, который Spring преобразует в json
+    }
+
+    @PostMapping("/employees")
+                                            //в body Http-request придет работник
+    public Employee addNewEmployeeAndReturnHim(@RequestBody Employee employee) {
+        employeeService.saveNewEmployee(employee);
+        //возвращаем этого же работника, но уже добавленного в БД, который имеет id
+        return employee;
     }
 }

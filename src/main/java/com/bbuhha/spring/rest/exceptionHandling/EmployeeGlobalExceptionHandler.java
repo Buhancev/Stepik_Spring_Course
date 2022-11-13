@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
+@ControllerAdvice //Класс, предоставляющий функциональность Global Exception Handler'a
 public class EmployeeGlobalExceptionHandler {
     @ExceptionHandler //метод, ответственный за обработку исключений
     //ResponseEntity - обертка HTTP response
