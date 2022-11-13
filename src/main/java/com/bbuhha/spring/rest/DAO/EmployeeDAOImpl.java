@@ -39,7 +39,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void saveNewEmployee(Employee employee) {
+    public void saveOrUpdateEmployee(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
 
         //тк по дефолту Employee имеет id = 0 (если это новый работник, которого мы добавляем)

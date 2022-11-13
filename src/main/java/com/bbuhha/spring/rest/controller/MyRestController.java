@@ -39,8 +39,15 @@ public class MyRestController {
     @PostMapping("/employees")
                                             //в body Http-request придет работник
     public Employee addNewEmployeeAndReturnHim(@RequestBody Employee employee) {
-        employeeService.saveNewEmployee(employee);
+        employeeService.saveOrUpdateEmployee(employee);
         //возвращаем этого же работника, но уже добавленного в БД, который имеет id
+        return employee;
+    }
+
+    @PutMapping("/employees")
+    //в body Http-request придет работник, который из json конвертируется в java-object (за это отвечает jackson)
+    public Employee updateEmployeeAndReturnHim(@RequestBody Employee employee) {
+        employeeService.saveOrUpdateEmployee(employee);
         return employee;
     }
 }
