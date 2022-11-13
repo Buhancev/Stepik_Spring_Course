@@ -50,4 +50,17 @@ public class MyRestController {
         employeeService.saveOrUpdateEmployee(employee);
         return employee;
     }
+
+    @DeleteMapping("/employee/{id}")
+    public String updateEmployeeAndReturnHim(@PathVariable int id) {
+        //проверяем есть ли вообще такой работник
+        Employee employee = employeeService.getEmployeeById(id);
+
+        if(employee == null) {
+            throw new NoSuchEmployeeException("There is no employee with ID = " + id + " in Database. Delete could not be complete");
+        }
+
+        employeeService.deleteEmployeeById(id);
+        return "Employee with ID = " + id + " was deleted";
+    }
 }
