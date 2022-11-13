@@ -38,30 +38,4 @@ public class MyRestController {
 
         return employee; //отправляет Employee, который Spring преобразует в json
     }
-
-    @ExceptionHandler //метод, ответственный за обработку исключений
-    //ResponseEntity - обертка HTTP response
-    public ResponseEntity<EmployeeIncorrectData> handleExceptionNotFound(
-            //В случае выбрасывания NoSuchEmployeeException мы должны добавить в тело Response добавить объект EmployeeIncorrectData
-            //грубо говоря, на какой exception реагирует данный метод
-            NoSuchEmployeeException exception) {
-        EmployeeIncorrectData data = new EmployeeIncorrectData();
-        data.setInfo(exception.getMessage());
-
-        //передаем сам объект, и статус код нашего HTTP-response
-        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler //метод, ответственный за обработку исключений
-    //ResponseEntity - обертка HTTP response
-    public ResponseEntity<EmployeeIncorrectData> handleExceptionAny(
-            //В случае выбрасывания любой ошибка мы должны добавить в тело Response добавить объект EmployeeIncorrectData
-            //грубо говоря, на какой exception реагирует данный метод
-            Exception exception) {
-        EmployeeIncorrectData data = new EmployeeIncorrectData();
-        data.setInfo(exception.getMessage());
-
-        //передаем сам объект, и статус код нашего HTTP-response
-        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
-    }
 }
