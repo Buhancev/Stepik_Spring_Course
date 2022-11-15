@@ -11,6 +11,22 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 
 @EnableWebSecurity //помечаем класс, как класс ответственный за Security конфигурацию
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String[] AUTH_WHITELIST = {
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+            // other public endpoints of your API may be appended to this array
+    };
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         UserBuilder userBuilder = User.withDefaultPasswordEncoder(); //дефолт шифрование
@@ -33,12 +49,13 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**");
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers(AUTH_WHITELIST).permitAll()
+                .antMatchers("/api/employees").hasAnyRole("EMPLOYEE", "HR", "MANAGER")
+                .antMatchers("/**").hasAnyRole("HR", "MANAGER")
+                .and().formLogin().permitAll();
+
     }
+
 }
