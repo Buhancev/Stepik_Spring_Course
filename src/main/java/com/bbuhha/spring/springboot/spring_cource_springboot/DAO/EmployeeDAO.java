@@ -7,9 +7,9 @@ import java.util.List;
 public interface EmployeeDAO {
     public List<Employee> getAllEmployees();
 
-//    public void saveOrUpdateEmployee (Employee employee);
-//
-//    public Employee getEmployeeById(int id);
-//
-//    public void deleteEmployeeById (int id);
+    public void saveOrUpdateEmployee (Employee employee);
+
+    public Employee getEmployeeById(int id);
+
+    public void deleteEmployeeById (int id);
 }
